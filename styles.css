@@ -1,0 +1,57 @@
+body {
+
+    background-color: #edf1f3;
+    display: grid; 
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    place-items: center;
+}
+
+.title {
+    display: grid;
+    place-items: center;
+}
+
+#searchBar {
+    background-color: #B7D3F2;
+    border: 1px solid #AFAFDC;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 500px;
+}
+
+#countriesList {
+    list-style: none;
+    padding: 0;
+}
+
+#countriesList li {
+    padding: 5px 0;
+}
+
+.country-card {
+    background-color: #B7D3F2;
+    margin-top: 10px;
+    border: 1px solid #AFAFDC;
+    padding: 15px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.country-name {
+    display: grid;
+    place-items: center;
+}
+
+.country-flag {
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #AFAFDC;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.error {
+    color: red;
+}
