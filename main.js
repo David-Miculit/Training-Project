@@ -1,25 +1,62 @@
-async function fetchCountries() {
-    try {
-        const response = await fetch('https://restcountries.com/v3.1/independent')
-
-        const data = await response.json()
-
-        countries = data.map(country => ({
-            name: country.name.common,
-            capital: country.capital[0],
-            population: country.population,
-            currency: country.currencies,
-            map: country.maps.googleMaps,
-            language: country.languages,
-            flag: country.flags.png
-        }))
-    } catch (error) {
-        console.log('Error fetching countries')
+// fetch country data
+async function fetchCountry(name) {
+    const details = document.getElementById('countryDetails');
+    name = name.trim()
+    
+    if(!name) {
+        details.innerHTML = `Enter a country.`
+        return
     }
 
-    // displayCountries()
+    try {
+        const response = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(name)}?fields=name,capital,population,currencies,maps,languages,flags`)
+        if(!response) {
+            console.log('API Request failed')
+        }
+        const data = await response.json()
+        if(!Array.isArray(data) || data.length===0) {
+            details.innerHTML = `Country not found.`
+            return
+        }
+        const countryData = data[0]
+        console.log(countryData)
+
+        displayCountry(countryData) 
+    } catch (error) {
+        details.innerHTML = `Error ocurred.`
+    }
 }
 
+// display country data
+function displayCountry(country) {
+    const details = document.getElementById('countryDetails');
+
+    const name = country.name?.common || 'N/A'
+    const flag = country.flags.png || 'N/A'
+    const capital = country.capital?.[0] || 'N/A'
+    const population = country.population?.toLocaleString() || 'N/A'
+    const languages = country.languages ? Object.values(country.languages).join(', ') : 'N/A'
+    const currency = country.currencies ? Object.values(country.currencies)[0].name : 'N/A'
+    const map = country.maps.googleMaps || 'N/A'
+
+    try {
+        details.innerHTML = `
+            <div class="country-card">
+                <h2 class="country-name">${name}</h2>
+                <img class="country-flag" src="${flag}" alt="Flag">
+                <p><strong>Capital:</strong> ${capital}</p>
+                <p><strong>Population:</strong> ${population}</p>
+                <p><strong>Currency:</strong> ${currency}</p>
+                <p><strong>Languages:</strong> ${languages}</p>
+                <p><strong>Location: </strong><a href="${map}" target="_blank">Google Maps</a></p>
+            </div>
+        `;
+    } catch {
+        details.innerHTML = `<p class="error">Country not found.</p>`;
+    }
+}
+
+// display a list of all country names
 function displayCountries() {
     const results = document.getElementById('countriesList');
 
@@ -30,39 +67,10 @@ function displayCountries() {
     }
 }
 
-function searchCountry() {
-    const input = document.getElementById('searchBar').value.trim().toLowerCase();
-    const details = document.getElementById('countryDetails');
-    const match = countries.find(a =>
-        a.name.toLowerCase().includes(input)
-    );
-
-    if (match) {
-        details.innerHTML = `
-            <div class="country-card">
-                <h2 class="country-name">${match.name}</h2>
-                <img class="country-flag" src="${match.flag}" alt="Flag">
-                <p><strong>Capital:</strong> ${match.capital}</p>
-                <p><strong>Population:</strong> ${match.population.toLocaleString()}</p>
-                <p><strong>Currency:</strong> ${Object.values(match.currency)[0].name}</p>
-                <p><strong>Languages:</strong> ${Object.values(match.language).join(', ')}</p>
-                <p><strong>Location: </strong><a href="${match.map}" target="_blank">Google Maps</a></p>
-            </div>
-        `;
-    } else {
-        details.innerHTML = `<p class="error">Country not found.</p>`;
-    }
-}
-
-let countries = []
-
-fetchCountries()
-
 const searchInput = document.getElementById('searchBar')
-searchInput.addEventListener('keypress', (e) => {
+searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-        e.preventDefault()
-        searchCountry()
+        fetchCountry(e.target.value)
     }
 });
 
