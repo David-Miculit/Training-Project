@@ -30,7 +30,8 @@ async function fetchCountry(name) {
 
 async function fetchAllCountries() {
     const details = document.getElementById('countryDetails')
-
+    details.innerHTML = ''
+    
     try {
         const response = await fetch(`https://restcountries.com/v3.1/all?fields=name,capital,population,currencies,maps,languages,flags`)
         const data = await response.json()
