@@ -1,4 +1,5 @@
 import { displayCountry } from './ui.js';
+import { saveHistory } from './caching.js'
 
 // fetch single country data
 export async function fetchCountry(name) {
@@ -22,6 +23,7 @@ export async function fetchCountry(name) {
         }
 
         displayCountry(data[0]);
+        saveHistory(data[0].name.common)
     } catch (error) {
         console.error(error);
         details.innerHTML = 'Error occurred.';
