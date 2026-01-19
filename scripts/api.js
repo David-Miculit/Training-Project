@@ -32,20 +32,31 @@ export async function fetchCountry(name) {
 
 // fetch data for all countries
 export async function fetchAllCountries() {
-    const details = document.getElementById('countryDetails');
-    details.innerHTML = '';
+    const details = document.getElementById('countryDetails')
+    details.innerHTML = ''
 
     try {
         const response = await fetch(
             `https://restcountries.com/v3.1/all?fields=name,capital,population,currencies,maps,languages,flags`
         );
-        const data = await response.json();
+        const data = await response.json()
+        const batchSize = 20
+        let index = 0
 
-        data.forEach(country => {
-            displayCountry(country, true);
-        });
+        function renderBatch() {
+            const slice = data.slice(index, index + batchSize)
+            slice.forEach(country => displayCountry(country, true))
+
+            index += batchSize
+
+            if (index < data.length) {
+                requestAnimationFrame(renderBatch)
+            }
+        }
+
+        requestAnimationFrame(renderBatch)
     } catch (error) {
-        console.error(error);
-        details.innerHTML = 'Error occurred.';
+        console.error(error)
+        details.innerHTML = 'Error occurred.'
     }
 }
