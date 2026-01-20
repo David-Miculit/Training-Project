@@ -1,21 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>landingPage</title>
-        <link rel="stylesheet" href="styles.css">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Country Search</title>
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
 
-    <body>
-        <h2 class="title">Country Search</h2>
-        <input id="searchBar" type="text" placeholder="Search by name...">
-        <div>        
-            <button id="historyButton" class="button button1">Show search history</button>
-            <button id="clearCacheButton" class="button button1">Clear Cache</button>
-            <button id="countryListButton" class="button button1">Show all countries</button>
-            <button id="favoritesButton" class="button button1">Favorites</button>
-        </div>
-        <div id="countryDetails"></div>
-        <ul id="countriesList"></ul>
+    <body class="min-h-screen flex flex-col font-sans bg-gradient-to-b from-slate-50 to-slate-100 text-slate-900">
+        <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
+            <nav class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 container mx-auto px-4 py-3" aria-label="Top navigation">
+
+                <h2 class="text-lg md:text-xl font-bold text-blue-700 tracking-tight">
+                    Country Explorer
+                </h2>
+
+                <ul class="flex flex-wrap gap-2 justify-start md:justify-end w-full md:w-auto">
+                    <li>
+                        <button
+                            id="historyButton"
+                            type="button"
+                            class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold border transition shadow-sm select-none
+                                bg-white text-slate-800 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-[0.98]">
+                            History
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            id="countryListButton"
+                            type="button"
+                            class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold border transition shadow-sm select-none
+                                bg-white text-slate-800 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-[0.98]">
+                            All countries
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            id="favoritesButton"
+                            type="button"
+                            class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold border transition shadow-sm select-none
+                                bg-white text-slate-800 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-[0.98]">
+                            Favorites
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            id="clearCacheButton"
+                            type="button"
+                            class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold border transition shadow-sm select-none
+                                bg-rose-50 text-rose-700 border-rose-200 hover:bg-rose-100 hover:border-rose-300 active:scale-[0.98]">
+                            Clear cache
+                        </button>
+                    </li>
+                </ul>
+
+            </nav>
+        </header>
+
+        <main class="flex-grow container mx-auto px-4 py-10 flex justify-center">
+            <section class="w-full max-w-2xl" aria-labelledby="page-title">
+
+                <h1 id="page-title" class="text-3xl md:text-4xl font-extrabold text-center text-slate-800 mb-6">
+                    Country Search
+                </h1>
+
+                <input
+                    id="searchBar"
+                    name="q"
+                    type="search"
+                    placeholder="Search by name..."
+                    autocomplete="off"
+                    class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3
+                        shadow-sm outline-none transition
+                        focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+                />
+
+                <section id="countryDetails" class="mt-6" aria-live="polite" aria-label="Country details">
+                </section>
+
+                <section class="mt-4" aria-label="Country list">
+                    <ul id="countriesList" class="space-y-2"></ul>
+                </section>
+            </section>
+        </main>
+
+        <footer class="mt-auto border-t border-slate-200 bg-white/70">
+            <p class="container mx-auto px-4 py-4 text-center text-slate-500 text-sm">Country Explorer.</p>
+        </footer>
+
         <script type="module" src="scripts/main.js"></script>
     </body>
 </html>
