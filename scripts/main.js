@@ -50,7 +50,7 @@ export function init() {
 
     clearCacheButton.addEventListener('click', () => {
         clearHistory()
-        countriesList.innerHTML = '<li>Cachhe cleared.</li>'
+        alert("Cache cleared")
     })
 
     details.addEventListener('click', (e) => {
