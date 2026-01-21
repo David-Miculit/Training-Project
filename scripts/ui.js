@@ -17,7 +17,7 @@ export function displayCountry(country, isList=false) {
 
     const cardHTML = 
     `
-        <div class="country-card">
+        <div class="country-card rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm m-2">
             <h2 class="country-name">${name}</h2>
             <button class="favorite-btn" data-country="${name}">${heart}</button>
             <img class="country-flag" src="${flag}" alt="Flag">
@@ -25,7 +25,7 @@ export function displayCountry(country, isList=false) {
             <p><strong>Population:</strong> ${population}</p>
             <p><strong>Currency:</strong> ${currency}</p>
             <p><strong>Languages:</strong> ${languages}</p>
-            <p><strong>Location: </strong><a href="${map}" target="_blank">Google Maps</a></p>
+            <p><strong>Location: </strong><a href="${map}" target="_blank" class="text-blue-700">Google Maps</a></p>
         </div>
     `;
 
