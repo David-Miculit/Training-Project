@@ -8,7 +8,6 @@ export function init() {
     const countryListButton = document.getElementById('countryListButton');
     const historyButton = document.getElementById('historyButton')
     const clearCacheButton = document.getElementById('clearCacheButton')
-    const countriesList = document.getElementById('countriesList')
     const details = document.getElementById('countryDetails')
     const favoritesButton = document.getElementById('favoritesButton');
 
@@ -19,7 +18,7 @@ export function init() {
     });
 
     countryListButton.addEventListener('click', () => {
-        countriesList.innerHTML = ''
+        details.innerHTML = ''
         fetchAllCountries();
     });
 
