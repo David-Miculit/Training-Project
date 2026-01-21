@@ -17,16 +17,26 @@ export function displayCountry(country, isList=false) {
 
     const cardHTML = 
     `
-        <div class="country-card rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm m-2">
-            <h2 class="country-name">${name}</h2>
-            <button class="favorite-btn" data-country="${name}">${heart}</button>
-            <img class="country-flag" src="${flag}" alt="Flag">
+    <div class="country-card group relative rounded-xl border border-slate-200 px-4 py-3 shadow-sm m-2 hover:shadow-lg hover:scale-[1.02] transition-transform duration-200">
+        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 text-red-500 hover:bg-red-100 rounded-full duration-200 border border-transparent group-hover:border-red-200" data-country="${name}" aria-label="Add to favorites">
+            ${heart}
+        </button>
+
+        <h2 class="country-name text-center text-lg font-semibold text-slate-900 mb-2">
+            ${name}
+        </h2>
+
+        <img class="country-flag border border-slate-200 mx-auto my-2 h-24 rounded-md" src="${flag}" alt="Flag">
+        </img>
+
+        <div class="country-details overflow-hidden duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-full group-hover:opacity-100">
             <p><strong>Capital:</strong> ${capital}</p>
             <p><strong>Population:</strong> ${population}</p>
             <p><strong>Currency:</strong> ${currency}</p>
             <p><strong>Languages:</strong> ${languages}</p>
-            <p><strong>Location: </strong><a href="${map}" target="_blank" class="text-blue-700">Google Maps</a></p>
+            <p><strong>Location:</strong> <a href="${map}" target="_blank" class="text-blue-700 hover:underline">Google Maps</a></p>
         </div>
+    </div>
     `;
 
     if(isList) {

@@ -15,7 +15,7 @@
                     Country Explorer
                 </h2>
 
-                <ul class="flex flex-wrap gap-2 md:w-auto">
+                <ul class="flex flex-wrap gap-2 md:w-auto justify-center">
                     <li>
                         <button
                             id="historyButton"
@@ -75,8 +75,8 @@
                         focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                 />
 
-                <section id="countryDetails" class="mt-2 grid grid-cols-2 [&>*:last-child:nth-child(odd)]:col-span-2" aria-live="polite" aria-label="Country details">
-                </section>
+            <section id="countryDetails" class="mt-2 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] [&>*:last-child:nth-child(odd)]:col-span-full">
+            </section>
                 
             </section>
         </main>
