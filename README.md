@@ -1,2 +1,2 @@
 # Training-Project
-<img width="1784" height="920" alt="image" src="https://github.com/user-attachments/assets/308fd3b3-16e8-48bf-991c-fd08251c7f64" />
+<img width="1784" height="920" alt="image" src="https://github.com/user-attachments/assets/4380f82e-2774-45d1-b350-43c3ff4deff0" />
