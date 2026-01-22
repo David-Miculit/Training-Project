@@ -1,0 +1,148 @@
+@use "variables" as vars;
+@use "card";
+@use "mixins" as mixins;
+
+.layout {
+    min-height: 100vh;
+    @include mixins.flex(column);
+}
+
+.header {
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid vars.$grey;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.navbar {
+    @include mixins.flex(column, null, null, 0.75rem);
+
+    @media (min-width: 300px) {
+        @include mixins.flex(row, space-between, center);
+    }
+
+    max-width: vars.$container-width;
+    margin: auto;
+    padding: 3px 4px;
+}
+
+.logo {
+    font-size: 18px;
+    color: vars.$blue;
+}
+
+.nav-button-list {
+    @include mixins.flex(row, center, center, 0.5rem, wrap);
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    @include mixins.bordered(1px, solid, vars.$grey, 10px);
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    background: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        background-color: vars.$lightblue;
+    }
+
+    &--cache {
+        background: vars.$rose-50;
+        border-color: vars.$rose-200;
+        color: red;
+
+        &:hover {
+            background: vars.$rose-100;
+            border-color: vars.$rose-300;
+        }
+    }
+}
+
+.main-content {
+    @include mixins.flex(column,center,center);
+    width: 100%;
+    max-width: vars.$container-width;
+    margin: 0 auto;
+    padding: 24px 8px;
+}
+
+.main-section {
+    width: 50%;
+}
+
+#page-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: vars.$black;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.search-input {
+    @include mixins.bordered;
+
+    width: 100%;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+        box-shadow: 0 0 0 4px vars.$lightblue;
+    }
+}
+
+.country-cards {
+    width: 100%;
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    justify-content: center;
+}
+
+.country-cards > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
+.country-card {
+    @include mixins.bordered;
+
+    position: relative;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem;
+    background: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    &:hover .country-details {
+        max-height: 1000px;
+        opacity: 1;
+    }
+
+    &:hover .favorite-btn {
+        border-color: vars.$rose-200;
+    }
+}
+
+.page-footer {
+    margin-top: auto;
+    border-top: 1px solid vars.$grey;
+    background: white;
+}
+
+.footer-text {
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: vars.$black;
+}
